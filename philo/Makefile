@@ -6,7 +6,7 @@
 #    By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 17:45:28 by diolivei          #+#    #+#              #
-#    Updated: 2024/10/30 17:45:31 by diolivei         ###   ########.fr        #
+#    Updated: 2024/11/06 18:14:15 by diolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 cc = CC
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
 
 SRCS = $(wildcard src/*.c)
 OBJ_DIR = obj
