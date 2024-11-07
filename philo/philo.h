@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:44:35 by diolivei          #+#    #+#             */
-/*   Updated: 2024/10/30 17:51:55 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:01:05 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-# define PHILO_EAT "\033[1;93mis eating\033[0;39m"
-# define PHILO_SLEEP "\033[1;95mis sleeping\033[0;39m"
-# define PHILO_THINK "\033[1;90mis thinking\033[0;39m"
-# define PHILO_TAKE_FORK "\033[1;94mhas taken a fork\033[0;39m"
+# define PHILO_EAT "\033[1;96mis eating\033[0;39m"
+# define PHILO_SLEEP "is sleeping"
+# define PHILO_THINK "is thinking"
+# define PHILO_TAKE_FORK "has taken a fork"
 # define PHILO_DIE "\033[1;91mdied 💀\033[0;39m"
 
 typedef struct s_list
