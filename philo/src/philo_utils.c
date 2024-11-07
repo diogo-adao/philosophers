@@ -6,7 +6,7 @@ t_philo	*philo_get_data(t_philo_data *d, int i)
 
 	node = malloc(sizeof(struct s_philo));
 	if (!node)
-		return (philo_exit(NULL, NULL, THREAD_FAILED));
+		return (NULL);
 	node->id = i + 1;
 	node->thread_id = 0;
 	pthread_mutex_init(&node->fork_lock, NULL);
@@ -28,34 +28,6 @@ t_list	*philo_lst(t_philo_data *d)
 	return (philos);
 }
 
-int	philo_perror(char *param, t_philo_err err_code)
-{
-	printf("philo: ");
-	if (err_code == INV_ARGS)
-		printf("invalid number of arguments");
-	if (err_code == NO_MEMORY)
-		printf("no memory left on device");
-	if (err_code == THREAD_FAILED)
-		printf("failed to create a thread");
-	if (err_code == INV_PHILO_COUNT)
-		printf("invalid philosopher_count: ");
-	if (err_code == INV_DIE_TIME)
-		printf("invalid time_to_die: ");
-	if (err_code == INV_EAT_TIME)
-		printf("invalid time_to_eat: ");
-	if (err_code == INV_SLEEP_TIME)
-		printf("invalid time_to_sleep: ");
-	if (err_code == INV_REPEAT_COUNT)
-		printf("invalid repeat_times: ");
-	if (err_code == TOO_MANY_PHILO)
-		printf("system may not be able to handle that many threads: ");
-	if (param && err_code != INV_ARGS && err_code != NO_MEMORY && \
-			err_code != THREAD_FAILED)
-		printf("%s", param);
-	printf("\n");
-	return (1);
-}
-
 void	philo_timestamp(t_list *philos, char *action, unsigned int t)
 {
 	unsigned int	time;
@@ -68,7 +40,7 @@ void	philo_timestamp(t_list *philos, char *action, unsigned int t)
 	died = philo->data->died;
 	pthread_mutex_lock(&philo->data->eat_count_lock);
 	eat_count = philo->data->eat_count;
-	time = philo_get_time() - philo->data->init_time;
+	time = get_current_time() - philo->data->init_time;
 	if (philo->data->repeat_count * philo->data->philo_count != \
 			eat_count && (!died || action[7] == 'd'))
 	{
@@ -84,14 +56,12 @@ void	philo_timestamp(t_list *philos, char *action, unsigned int t)
 		ft_usleep(t);
 }
 
-void	*philo_exit(t_list *philos, char *param, t_philo_err err_code)
+void	*free_philos(t_list *philos)
 {
 	t_philo	*philo;
 	t_list	*temp;
 
 	temp = philos;
-	if (err_code != END)
-		philo_perror(param, err_code);
 	while (philos)
 	{
 		philo = philos->content;

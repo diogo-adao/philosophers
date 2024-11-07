@@ -28,20 +28,6 @@
 # define PHILO_TAKE_FORK "\033[1;94mhas taken a fork\033[0;39m"
 # define PHILO_DIE "\033[1;91mdied 💀\033[0;39m"
 
-typedef enum e_philo_err
-{
-	END = 1,
-	INV_ARGS = -1,
-	TOO_MANY_PHILO = -2,
-	INV_PHILO_COUNT = -3,
-	INV_DIE_TIME = -4,
-	INV_EAT_TIME = -5,
-	INV_SLEEP_TIME = -6,
-	INV_REPEAT_COUNT = -7,
-	NO_MEMORY = -8,
-	THREAD_FAILED = -9
-}			t_philo_err;
-
 typedef struct s_list
 {
 	void			*content;
@@ -72,20 +58,19 @@ typedef struct s_philo
 	struct s_philo_data	*data;
 }						t_philo;
 
+// PHILO
+unsigned int	get_current_time(void);
+int				ft_usleep(unsigned int usec);
+void			*philo_init(int philo_count, t_list *philos);
+void			*free_philos(t_list *philos);
+void			philo_timestamp(t_list *philos, char *action, unsigned int t);
+t_list			*philo_lst(t_philo_data *d);
+
 // UTILS
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *lst);
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void 			ft_lstadd_back(t_list **lst, t_list *newnode);
 long			ft_atoi(const char *str);
-
-// PHILO
-unsigned int	philo_get_time(void);
-int				ft_usleep(unsigned int usec);
-int				philo_perror(char *param, t_philo_err err_code);
-void			*philo_init(int philo_count, t_list *philos);
-void			*philo_exit(t_list *philos, char *param, t_philo_err err_code);
-void			philo_timestamp(t_list *philos, char *action, unsigned int t);
-t_list			*philo_lst(t_philo_data *d);
 
 #endif

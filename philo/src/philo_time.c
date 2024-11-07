@@ -1,6 +1,6 @@
 #include "../philo.h"
 
-unsigned int	philo_get_time(void)
+unsigned int	get_current_time(void)
 {
 	struct timeval	t;
 
@@ -13,13 +13,13 @@ int	ft_usleep(unsigned int usec)
 	unsigned int	before;
 	unsigned int	after;
 
-	before = philo_get_time();
+	before = get_current_time();
 	after = before;
 	while (after - before < usec)
 	{
 		if (usleep(usec) == -1)
 			return (-1);
-		after = philo_get_time();
+		after = get_current_time();
 	}
 	return (0);
 }

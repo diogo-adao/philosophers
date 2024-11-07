@@ -7,7 +7,7 @@ void	philo_actions(t_list *node, t_philo *philo, t_philo *next)
 	pthread_mutex_lock(&next->fork_lock);
 	philo_timestamp(node, PHILO_TAKE_FORK, 0);
 	pthread_mutex_lock(&philo->last_meal_lock);
-	philo->last_meal = philo_get_time() - philo->data->init_time;
+	philo->last_meal = get_current_time() - philo->data->init_time;
 	pthread_mutex_unlock(&philo->last_meal_lock);
 	philo_timestamp(node, PHILO_EAT, philo->data->eat_time);
 	philo_timestamp(node, PHILO_SLEEP, 0);
@@ -53,7 +53,7 @@ void	*philo_monitor(t_list *start, t_philo *philo)
 		pthread_mutex_lock(&philo->last_meal_lock);
 		last_meal = philo->last_meal;
 		pthread_mutex_unlock(&philo->last_meal_lock);
-		if (philo_get_time() - philo->data->init_time - last_meal >= \
+		if (get_current_time() - philo->data->init_time - last_meal >= \
 			philo->data->die_time || eat_c == \
 			philo->data->philo_count * philo->data->repeat_count)
 		{
@@ -80,7 +80,7 @@ void	*philo_init(int philo_count, t_list *philos)
 	{
 		philo = start->content;
 		if (pthread_create(&philo->thread_id, NULL, start_thread, start))
-			return (philo_exit(philos, NULL, THREAD_FAILED));
+			return (free_philos(philos));
 		start = start->next;
 	}
 	philo_monitor(start, NULL);
