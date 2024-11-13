@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:09:08 by diolivei          #+#    #+#             */
-/*   Updated: 2024/11/07 19:09:09 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:42:32 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_philo	*philo_get_data(t_philo_data *d, int i)
 t_list	*philo_lst(t_philo_data *d)
 {
 	int		i;
-	t_list	*philos;
+	t_list *philos;
 
 	i = -1;
 	philos = NULL;
