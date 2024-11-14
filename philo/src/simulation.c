@@ -91,7 +91,7 @@ void	*philo_init(int philo_count, t_list *philos)
 	while (++i < philo_count)
 	{
 		philo = start->content;
-		if (pthread_create(&philo->thread_id, NULL, start_thread, start))
+		if (pthread_create(&philo->thread_id, NULL, start_thread, start) != 0)
 			return (free_philos(philos));
 		start = start->next;
 	}

@@ -36,13 +36,13 @@ typedef struct s_list
 
 typedef struct s_philo_data
 {
-	int				philo_count;
-	unsigned int	init_time;
-	long			repeat_count;
-	long long		die_time;
-	long long		eat_time;
-	long long		sleep_time;
-	long			eat_count;
+	int				philo_count; // Number of philosophers
+	unsigned int	init_time; // Initial time of program execution
+	long			repeat_count; // Number of times each philosopher must eat
+	long long		die_time; // Max time a philosopher can live without eating
+	long long		eat_time; // Time a philosopher takes to eat
+	long long		sleep_time; // Time a philosopher takes to sleep
+	long			eat_count; // Number of times a philosopher has eaten
 	pthread_mutex_t	eat_count_lock;
 	int				died;
 	pthread_mutex_t	died_lock;
@@ -50,7 +50,7 @@ typedef struct s_philo_data
 
 typedef struct s_philo
 {
-	int					id;
+	int					id; // Philosopher identifier
 	pthread_t			thread_id;
 	pthread_mutex_t		fork_lock;
 	unsigned int		last_meal;

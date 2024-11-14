@@ -67,12 +67,12 @@ int	main(int argc, char **argv)
 		printf(" <time_to_eat> <time_to_sleep> [<repeat_times>]\n");
 		return (1);
 	}
-	if (invalid_args(argc, argv))
+	if (invalid_args(argc, argv)) // Check for invalid args
 		return (1);
-	init_data(&d, argv);
-	philos = philo_lst(&d);
-	ft_lstlast(philos)->next = philos;
-	philo_init(d.philo_count, philos);
-	free_philos(philos);
+	init_data(&d, argv); // Initialize data
+	philos = philo_lst(&d); // Create a list of philos
+	ft_lstlast(philos)->next = philos; // Make it a circular list
+	philo_init(d.philo_count, philos); // Initialize simulation
+	free_philos(philos); // Free all memory
 	return (0);
 }
