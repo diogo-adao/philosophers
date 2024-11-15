@@ -43,19 +43,19 @@ typedef struct s_philo_data
 	long long		eat_time; // Time a philosopher takes to eat
 	long long		sleep_time; // Time a philosopher takes to sleep
 	long			eat_count; // Number of times a philosopher has eaten
-	pthread_mutex_t	eat_count_lock;
-	int				died;
-	pthread_mutex_t	died_lock;
+	pthread_mutex_t	eat_count_lock; // Controls access to eat_count variable
+	int				died; // Shared death flag
+	pthread_mutex_t	died_lock; // Controls access to died variable
 }					t_philo_data;
 
 typedef struct s_philo
 {
 	int					id; // Philosopher identifier
-	pthread_t			thread_id;
-	pthread_mutex_t		fork_lock;
-	unsigned int		last_meal;
-	pthread_mutex_t		last_meal_lock;
-	struct s_philo_data	*data;
+	pthread_t			thread_id; // Thread identifier
+	pthread_mutex_t		fork_lock; // Controls access to forks
+	unsigned int		last_meal; // Holds the last time a philosopher ate
+	pthread_mutex_t		last_meal_lock; // Controls access to last_meal variable
+	struct s_philo_data	*data; // Gives access to the data struct
 }						t_philo;
 
 // PHILO

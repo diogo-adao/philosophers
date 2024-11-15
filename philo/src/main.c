@@ -46,7 +46,7 @@ static void	init_data(t_philo_data *d, char **argv)
 	d->die_time = ft_atoi(argv[2]);
 	d->eat_time = ft_atoi(argv[3]);
 	d->sleep_time = ft_atoi(argv[4]);
-	d->repeat_count = -2;
+	d->repeat_count = -1;
 	if (argv[5])
 		d->repeat_count = ft_atoi(argv[5]);
 	d->init_time = get_current_time();

@@ -38,10 +38,10 @@ void	*start_thread(void *node)
 	i = -1;
 	philo = ((struct s_list *)node)->content;
 	next = ((struct s_list *)node)->next->content;
-	ft_usleep(!(philo->id % 2) * 2);
+	ft_usleep(!(philo->id % 2) * 2); // Even ID's wait before picking a fork
 	pthread_mutex_lock(&philo->data->died_lock);
 	while (philo->id != next->id && !philo->data->died && \
-		(philo->data->repeat_count == -2 || ++i < philo->data->repeat_count))
+		(philo->data->repeat_count == -1 || ++i < philo->data->repeat_count))
 	{
 		pthread_mutex_unlock(&philo->data->died_lock);
 		philo_actions(node, philo, next);
