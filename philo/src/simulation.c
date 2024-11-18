@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:09:00 by diolivei          #+#    #+#             */
-/*   Updated: 2024/11/07 19:09:01 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:10:04 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*init_thread(void *node)
 	i = -1;
 	philo = ((struct s_list *)node)->content;
 	next = ((struct s_list *)node)->next->content;
-	ft_usleep(!(philo->id % 2) * 2); // Even ID's wait before picking a fork
+	ft_usleep(!(philo->id % 2) * 2);
 	pthread_mutex_lock(&philo->data->end_lock);
 	while (philo->id != next->id && !philo->data->end && \
 		(philo->data->repeat_count == -1 || ++i < philo->data->repeat_count))

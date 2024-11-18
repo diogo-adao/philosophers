@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:09:15 by diolivei          #+#    #+#             */
-/*   Updated: 2024/11/13 16:42:00 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:09:45 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ int	main(int argc, char **argv)
 		printf(" <time_to_eat> <time_to_sleep> [<repeat_times>]\n");
 		return (1);
 	}
-	if (invalid_args(argc, argv)) // Check for invalid args
+	if (invalid_args(argc, argv))
 		return (1);
-	init_data(&d, argv); // Initialize data
-	philos = philo_lst(&d); // Create a list of philos
-	ft_lstlast(philos)->next = philos; // Make it a circular list
-	init_simulation(d.philo_count, philos); // Initialize simulation
-	free_philos(philos); // Free all memory
+	init_data(&d, argv);
+	philos = philo_lst(&d);
+	ft_lstlast(philos)->next = philos;
+	init_simulation(d.philo_count, philos);
+	free_philos(philos);
 	return (0);
 }

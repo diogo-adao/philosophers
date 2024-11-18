@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:44:35 by diolivei          #+#    #+#             */
-/*   Updated: 2024/11/13 16:41:32 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:02:41 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_list			*philo_lst(t_philo_data *d);
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *lst);
 void			ft_lstclear(t_list **lst, void (*del)(void*));
-void 			ft_lstadd_back(t_list **lst, t_list *newnode);
+void			ft_lstadd_back(t_list **lst, t_list *newnode);
 long			ft_atoi(const char *str);
 
 #endif

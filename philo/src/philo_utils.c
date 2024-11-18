@@ -6,13 +6,13 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:09:08 by diolivei          #+#    #+#             */
-/*   Updated: 2024/11/13 16:42:32 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:10:54 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-t_philo	*philo_get_data(t_philo_data *d, int i)
+t_philo	*philo_data(t_philo_data *d, int i)
 {
 	t_philo	*node;
 
@@ -31,20 +31,20 @@ t_philo	*philo_get_data(t_philo_data *d, int i)
 t_list	*philo_lst(t_philo_data *d)
 {
 	int		i;
-	t_list *philos;
+	t_list	*philos;
 
 	i = -1;
 	philos = NULL;
 	while (++i < d->philo_count)
-		ft_lstadd_back(&philos, ft_lstnew(philo_get_data(d, i)));
+		ft_lstadd_back(&philos, ft_lstnew(philo_data(d, i)));
 	return (philos);
 }
 
 void	print_actions(t_list *philos, char *action, unsigned int t)
 {
 	unsigned int	time;
-	t_philo		*philo;
-	int			ended;
+	t_philo			*philo;
+	int				ended;
 
 	philo = philos->content;
 	pthread_mutex_lock(&philo->data->end_lock);
@@ -56,7 +56,11 @@ void	print_actions(t_list *philos, char *action, unsigned int t)
 			time, philo->id, action);
 	}
 	if (action[10] == 'e')
+	{
+		pthread_mutex_lock(&philo->data->eat_count_lock);
 		philo->data->eat_count++;
+		pthread_mutex_unlock(&philo->data->eat_count_lock);
+	}
 	pthread_mutex_unlock(&philo->data->end_lock);
 	if (!ended)
 		ft_usleep(t);

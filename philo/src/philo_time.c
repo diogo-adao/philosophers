@@ -6,7 +6,7 @@
 /*   By: diolivei <diolivei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:09:11 by diolivei          #+#    #+#             */
-/*   Updated: 2024/11/13 16:27:45 by diolivei         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:09:56 by diolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ unsigned int	get_current_time(void)
 	struct timeval	t;
 
 	gettimeofday(&t, NULL);
-	return (t.tv_sec * 1000 + t.tv_usec / 1000); // seconds and microseconds
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
 }
 
 int	ft_usleep(unsigned int ms)
@@ -29,7 +29,7 @@ int	ft_usleep(unsigned int ms)
 	after = before;
 	while (after - before < ms)
 	{
-		usleep(ms); // Needed to reduce CPU usage
+		usleep(ms);
 		after = get_current_time();
 	}
 	return (0);
