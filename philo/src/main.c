@@ -50,9 +50,9 @@ static void	init_data(t_philo_data *d, char **argv)
 	if (argv[5])
 		d->repeat_count = ft_atoi(argv[5]);
 	d->init_time = get_current_time();
-	d->died = 0;
+	d->end = 0;
 	d->eat_count = 0;
-	pthread_mutex_init(&d->died_lock, NULL);
+	pthread_mutex_init(&d->end_lock, NULL);
 	pthread_mutex_init(&d->eat_count_lock, NULL);
 }
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 	init_data(&d, argv); // Initialize data
 	philos = philo_lst(&d); // Create a list of philos
 	ft_lstlast(philos)->next = philos; // Make it a circular list
-	philo_init(d.philo_count, philos); // Initialize simulation
+	init_simulation(d.philo_count, philos); // Initialize simulation
 	free_philos(philos); // Free all memory
 	return (0);
 }

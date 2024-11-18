@@ -40,31 +40,25 @@ t_list	*philo_lst(t_philo_data *d)
 	return (philos);
 }
 
-void	philo_timestamp(t_list *philos, char *action, unsigned int t)
+void	print_actions(t_list *philos, char *action, unsigned int t)
 {
 	unsigned int	time;
 	t_philo		*philo;
-	int			died;
-	int			eat_count;
+	int			ended;
 
 	philo = philos->content;
-	pthread_mutex_lock(&philo->data->died_lock);
-	died = philo->data->died;
-	pthread_mutex_lock(&philo->data->eat_count_lock);
-	eat_count = philo->data->eat_count;
+	pthread_mutex_lock(&philo->data->end_lock);
+	ended = philo->data->end;
 	time = get_current_time() - philo->data->init_time;
-	if (philo->data->repeat_count * philo->data->philo_count != \
-			eat_count && (!died || action[7] == 'd'))
+	if (!ended || action[7] == 'd')
 	{
 		printf("\033[1;90m[%05u]  \033[1;92m%03d  \033[1;97m%s\n",
 			time, philo->id, action);
 	}
 	if (action[10] == 'e')
 		philo->data->eat_count++;
-	pthread_mutex_unlock(&philo->data->eat_count_lock);
-	pthread_mutex_unlock(&philo->data->died_lock);
-	if (philo->data->repeat_count * philo->data->philo_count != \
-			eat_count && (!died || action[7] == 'd'))
+	pthread_mutex_unlock(&philo->data->end_lock);
+	if (!ended)
 		ft_usleep(t);
 }
 

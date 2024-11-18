@@ -44,8 +44,8 @@ typedef struct s_philo_data
 	long long		sleep_time; // Time a philosopher takes to sleep
 	long			eat_count; // Number of times a philosopher has eaten
 	pthread_mutex_t	eat_count_lock; // Controls access to eat_count variable
-	int				died; // Shared death flag
-	pthread_mutex_t	died_lock; // Controls access to died variable
+	int				end; // End of simulation flag
+	pthread_mutex_t	end_lock; // Controls access to end variable
 }					t_philo_data;
 
 typedef struct s_philo
@@ -61,9 +61,9 @@ typedef struct s_philo
 // PHILO
 unsigned int	get_current_time(void);
 int				ft_usleep(unsigned int usec);
-void			*philo_init(int philo_count, t_list *philos);
+void			*init_simulation(int philo_count, t_list *philos);
 void			*free_philos(t_list *philos);
-void			philo_timestamp(t_list *philos, char *action, unsigned int t);
+void			print_actions(t_list *philos, char *action, unsigned int t);
 t_list			*philo_lst(t_philo_data *d);
 
 // UTILS
